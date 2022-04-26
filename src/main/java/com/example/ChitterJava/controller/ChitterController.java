@@ -11,8 +11,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping
 public class ChitterController {
+
     @Autowired
-    private PeepsService peepsService;
+    PeepsService peepsService;
 
     @GetMapping(value="/all-peeps")
     public Peep getAllPeeps() {
@@ -23,5 +24,8 @@ public class ChitterController {
     public Peep getPeep() {
         return new Peep(1, "mary", "hi world");
     }
+
+
+
 
 }
