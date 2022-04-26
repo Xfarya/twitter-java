@@ -15,8 +15,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(controllers = ChitterController.class)
@@ -47,7 +46,7 @@ public class ChitterControllerTest {
     @Test
     public void getAllPeeps() throws Exception {
 
-        when(allPeeps.all()).thenReturn(new Peep(2, "Henry", "no"));
+        when(allPeeps.all()).thenReturn(new Peep(2, "henry", "no"));
 
         RequestBuilder request = MockMvcRequestBuilders
                 .get("/all-peeps")
@@ -55,9 +54,9 @@ public class ChitterControllerTest {
 
         MvcResult result = mockMvc.perform(request)
                 .andExpect(status().isOk())
-                .andExpect(content().json("{2, \"Henry\", \"no\"}"))
+                .andExpect(content().json("{\"id\":2,\"user\":\"henry\",\"message\":\"no\"}"))
                 .andReturn();
-        assertEquals("{2, \"Henry\", \"no\"}", result
+        assertEquals("{\"id\":2,\"user\":\"henry\",\"message\":\"no\"}", result
                 .getResponse()
                 .getContentAsString());
     }
